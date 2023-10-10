@@ -1,0 +1,8 @@
+prefix=/home/virtual/catkin_ws/install
+
+Name: two_kuka
+Description: Description of two_kuka
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

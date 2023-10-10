@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot name="kuka_kr120_on_rail" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--TODO color definition still in two places, fix-->
+<!--Load color definitions-->
+<xacro:include filename="$(find my_kuka)/urdf/materials.xacro" />
+
+
+<!--Create rail to put the kuka arm on-->
+<link name="base_link">
+  <visual>
+    <geometry>
+      <box size="0.2 0.2 0.01"/>
+    </geometry>
+  </visual>
+  <collision>
+    <geometry>
+      <box size="0.2 0.2 0.01"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rail">
+  <visual>
+    <geometry>
+      <box size="0.6 17.463 0.1"/>
+    </geometry>
+    <origin xyz="0 -8.2 0.05"/>
+    <material name="Steel"/>
+  </visual>
+  <collision>
+    <geometry>
+      <box size="0.6 17.463 0.1"/>
+    </geometry>
+    <origin xyz="0 -8.2 0.05"/>
+  </collision>
+</link>
+
+<joint name="base_to_rail" type="fixed">
+  <parent link="base_link"/>
+  <child link="rail"/>
+  <origin xyz="0 0 0.69"/>
+</joint>
+
+<!--Put kuka arm on rail-->
+<xacro:include filename="$(find kuka_kr120_support)/urdf/kr120r2500pro_macro.xacro" />
+<xacro:kuka_kr120r2500pro prefix="arm_"/>
+
+<joint name="rail_to_arm_base_link" type="prismatic">
+  <parent link="rail"/>
+  <child link="arm_base_link"/>
+  <limit effort="1000.0" lower="-16.4" upper="0" velocity="0.5"/>
+  <axis xyz="0 1 0"/>
+  <origin rpy="0 0 0" xyz="0 0 0.1"/>
+</joint>
+
+</robot>

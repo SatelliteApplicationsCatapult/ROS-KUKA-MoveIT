@@ -1,0 +1,8 @@
+prefix=/home/virtual/catkin_ws/install
+
+Name: vispa
+Description: Description of vispa
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

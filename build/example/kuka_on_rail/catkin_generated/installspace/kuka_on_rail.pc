@@ -1,0 +1,8 @@
+prefix=/home/virtual/catkin_ws/install
+
+Name: kuka_on_rail
+Description: Description of kuka_on_rail
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
